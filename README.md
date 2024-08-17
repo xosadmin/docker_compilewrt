@@ -10,7 +10,7 @@ Notes:
 - For directories, ``/compile`` and ``/output`` are required. The ``/config`` is option.
 - The pre-compile script should be named as ``precompile.sh``
 - The post-compile script should be named as ``postcompile.sh``
-- The pre and post compile script must be in ``/config`` folder
+- The pre and post compile script must be in ``/config`` folder within docker
   
 Optional environment variable(s):  
 - ``NPROC``: To define how many thread(s) will be used while compling. The default value is ``1``.  
