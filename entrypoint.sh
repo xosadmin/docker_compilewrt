@@ -3,7 +3,7 @@
 if [ -f "/config/precompile.sh" ]; then
     echo "Running precompile script...." >&2
     chmod a+x /config/precompile.sh
-    /config/precompile.sh
+    bash /config/precompile.sh
 else
     echo "precompile.sh not found. Skipping..." >&2
 fi
@@ -21,7 +21,11 @@ fi
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 
-make -j$NPROC V=s
+if [ -z $singlethread ]; then
+    make -j$NPROC V=s
+else
+    make -j1 V=s
+fi
 
 echo "=================================="
 
@@ -37,7 +41,7 @@ fi
 if [ -f "/config/postcompile.sh" ]; then
     echo "Running post-compile script...." >&2
     chmod a+x /config/postcompile.sh
-    /config/postcompile.sh
+    bash /config/postcompile.sh
 else
     echo "postcompile.sh not found. Skipping...." >&2
 fi
